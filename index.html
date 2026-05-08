@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>OKNA | An Exclusive Invitation</title>
+  <title>OKNA | Private Client Invitation</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,7 +13,7 @@
     :root {
       --black: #000000;
       --white: #ffffff;
-      --border: rgba(255,255,255,0.12);
+      --border: rgba(255,255,255,0.15);
       --transition: all 1.2s cubic-bezier(0.7, 0, 0.3, 1);
     }
 
@@ -57,11 +57,11 @@
       font-weight: 600;
     }
 
-    /* --- LAYOUT --- */
+    /* --- CONTENT LAYOUT --- */
     .invite-page { display: flex; opacity: 0; transition: var(--transition); visibility: hidden; flex-direction: row; }
     .show-page { opacity: 1; visibility: visible; }
 
-    /* LEFT SIDE: FIXED INVITE */
+    /* LEFT SIDE: FIXED */
     .left-fixed {
       width: 40%; height: 100vh; position: fixed; left: 0; top: 0;
       padding: 60px; display: flex; flex-direction: column; justify-content: space-between;
@@ -73,7 +73,7 @@
     .guest-names { font-size: clamp(32px, 4vw, 65px); line-height: 1.1; font-weight: 500; margin-bottom: 20px; letter-spacing: -1px;}
     .bottom-date { font-size: 10px; letter-spacing: 3px; color: #555; text-transform: uppercase; }
 
-    /* RIGHT SIDE: SCROLLING CONTENT */
+    /* RIGHT SIDE: SCROLLING */
     .right-scroll { width: 60%; margin-left: 40%; background: var(--black); }
     .panel { min-height: 100vh; width: 100%; position: relative; padding: 100px 10%; display: flex; flex-direction: column; justify-content: center; border-bottom: 1px solid var(--border); }
     
@@ -84,6 +84,7 @@
     .panel-title { font-size: 48px; margin-bottom: 25px; line-height: 1.1; font-weight: 300; }
     .panel-p { font-family: 'Inter', sans-serif; font-size: 15px; line-height: 1.8; color: #bbb; margin-bottom: 30px; font-weight: 300; }
 
+    /* Six Sense Tech & Specs */
     .specs-container { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 40px; border-top: 1px solid var(--border); padding-top: 40px;}
     .spec-box .label { font-size: 9px; letter-spacing: 2px; color: #555; margin-bottom: 8px; display: block;}
     .spec-box .value { font-size: 18px; color: #fff; font-style: italic; }
@@ -93,24 +94,10 @@
     .address-text { font-family: 'Inter', sans-serif; font-size: 15px; line-height: 1.7; margin-bottom: 40px; color: #333; }
     .map-btn { display: inline-block; padding: 22px 50px; background: #000; color: #fff; text-decoration: none; text-transform: uppercase; letter-spacing: 4px; font-size: 11px; font-weight: 600; text-align: center; width: fit-content; }
 
-    /* --- MOBILE RESPONSIVENESS --- */
     @media (max-width: 1024px) {
       .invite-page { flex-direction: column; }
-      
-      .left-fixed {
-        width: 100%;
-        height: auto;
-        position: relative;
-        padding: 60px 30px;
-        border-right: none;
-        border-bottom: 1px solid var(--border);
-      }
-      
-      .right-scroll {
-        width: 100%;
-        margin-left: 0;
-      }
-
+      .left-fixed { width: 100%; height: auto; position: relative; padding: 60px 30px; border-right: none; border-bottom: 1px solid var(--border); }
+      .right-scroll { width: 100%; margin-left: 0; }
       .okna-logo { font-size: 26px; letter-spacing: 12px; }
       .invite-text { font-size: 18px; }
       .guest-names { font-size: 42px; }
@@ -136,33 +123,33 @@
     <div class="left-fixed">
       <div class="okna-logo serif">OKNA</div>
       <div class="hero-text">
-        <p class="invite-text serif">OKNA cordially invites you to a curated walkthrough of our Experience Center—where your dream home finds its vision.</p>
-        <h1 class="guest-names serif">A Private <br>Experience</h1>
-        <p class="sans" style="color:#444">Luxury System Windows & Doors</p>
+        <p class="invite-text serif">OKNA cordially invites you to explore a world where engineering meets artistry. Experience the slimmest systems in the world, crafted for your home.</p>
+        <h1 class="guest-names serif">Your Home. <br>Our Vision.</h1>
+        <p class="sans" style="color:#444">Belgium Engineered Systems</p>
       </div>
-      <div class="bottom-date sans">By Appointment • Mohali</div>
+      <div class="bottom-date sans">By Appointment • Mohali Center</div>
     </div>
 
     <div class="right-scroll">
       <section class="panel">
         <div class="panel-bg" style="background-image: url('https://images.unsplash.com/photo-1600607687940-4e524cb35a07?q=80&w=1400');"></div>
         <div class="content-overlay">
-          <span class="sans" style="color:#fff; opacity:0.5; margin-bottom:15px; display:block;">01 / Lifestyle</span>
-          <h2 class="panel-title serif">Frames for <br>a Lifetime.</h2>
-          <p class="panel-p">Your home is a sanctuary. At OKNA, we use Belgium engineering to ensure that every view from your living room is a masterpiece, framed by the slimmest profiles in the world.</p>
+          <span class="sans" style="color:#fff; opacity:0.5; margin-bottom:15px; display:block;">01 / Innovation</span>
+          <h2 class="panel-title serif">The Vertical <br>Revolution.</h2>
+          <p class="panel-p">Introducing our motorized Vertical Window systems. Effortlessly slide glass panels with smart-home integration, merging the convenience of automation with the beauty of panoramic views.</p>
         </div>
       </section>
 
       <section class="panel" style="background-color: #080808;">
         <div class="content-overlay">
-          <span class="sans" style="margin-bottom:15px; display:block;">02 / Why Visit</span>
-          <h2 class="panel-title serif">Tactile Luxury.</h2>
-          <p class="panel-p">We believe luxury must be felt. Visit us to experience the "Silent Glide" of our sliding systems and the solid reassurance of our multi-point security hardware.</p>
+          <span class="sans" style="margin-bottom:15px; display:block;">02 / Reliability</span>
+          <h2 class="panel-title serif">The Six Sense <br>Standard.</h2>
+          <p class="panel-p">Your home deserves uncompromised safety. Our products undergo "Six Sense Tech" testing—including wind-load resistance, 2,00,000 cycle service life tests, and advanced soundproof engineering for peace of mind.</p>
           <div class="specs-container">
-            <div class="spec-box"><span class="label">Security</span><span class="value">Advanced Belgium Locking</span></div>
-            <div class="spec-box"><span class="label">Aesthetics</span><span class="value">Ultra-Slim 20mm Sightlines</span></div>
-            <div class="spec-box"><span class="label">Comfort</span><span class="value">Heat & Noise Insulation</span></div>
-            <div class="spec-box"><span class="label">Durability</span><span class="value">Hurricane-Tested Frames</span></div>
+            <div class="spec-box"><span class="label">Soundproof</span><span class="value">Up to 52 dB Reduction</span></div>
+            <div class="spec-box"><span class="label">Life Test</span><span class="value">2,00,000 Cycles</span></div>
+            <div class="spec-box"><span class="label">Weather</span><span class="value">Acoustic & Thermal Mastery</span></div>
+            <div class="spec-box"><span class="label">Hardware</span><span class="value">Belgium Security Systems</span></div>
           </div>
         </div>
       </section>
@@ -170,9 +157,9 @@
       <section class="panel">
         <div class="panel-bg" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1400');"></div>
         <div class="content-overlay">
-          <span class="sans" style="color:#fff; opacity:0.5; margin-bottom:15px; display:block;">03 / Quality</span>
-          <h2 class="panel-title serif">Peace of Mind.</h2>
-          <p class="panel-p">Our systems don't just look beautiful—they are built to protect. Experience how we combine the elegance of large-span glass with the strength of high-grade aluminum.</p>
+          <span class="sans" style="color:#fff; opacity:0.5; margin-bottom:15px; display:block;">03 / Aesthetics</span>
+          <h2 class="panel-title serif">Gladik Plus <br>Sliding Series.</h2>
+          <p class="panel-p">Witness our slimmest interlocks and modern profiles. At the Mohali Experience Center, you can touch and feel the "Silent Glide" of glass spans that redefine your living environment.</p>
         </div>
       </section>
 
@@ -188,7 +175,7 @@
       </section>
 
       <footer style="padding: 40px 10%; background: #000; text-align: center;">
-        <div class="sans" style="color:#333; font-size: 8px;">Bespoke Luxury Systems • oknadesigns.com</div>
+        <div class="sans" style="color:#333; font-size: 8px;">Belgium Technology • India's Leading Integrated Solutions • oknadesigns.com</div>
       </footer>
     </div>
   </div>
