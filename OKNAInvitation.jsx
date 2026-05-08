@@ -1,98 +1,509 @@
-export default function OKNAInvitation() {
-  return (
-    <div className="min-h-screen bg-[#ececec] p-6 flex items-center justify-center">
-      <div className="max-w-6xl w-full bg-white border border-gray-300 shadow-2xl overflow-hidden">
-        {/* Logo */}
-        <div className="text-center py-8 border-b border-black">
-          <h1 className="text-6xl font-extrabold tracking-widest text-[#0b1b35]">
-            OKNA
-          </h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OKNA Luxury Invitation</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #0a0a0a;
+      --gold: #c8a56a;
+      --gold-soft: #e3c48f;
+      --text: #f5f5f5;
+      --muted: #9a9a9a;
+      --card: rgba(255,255,255,0.05);
+      --border: rgba(255,255,255,0.12);
+    }
+
+    body {
+      background:
+        radial-gradient(circle at top left, rgba(200,165,106,0.15), transparent 35%),
+        radial-gradient(circle at bottom right, rgba(255,255,255,0.05), transparent 30%),
+        #050505;
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 1350px;
+      margin: auto;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,0.03),
+        0 40px 120px rgba(0,0,0,0.8);
+      overflow: hidden;
+      position: relative;
+      animation: fadeUp 1.4s ease forwards;
+    }
+
+    .container::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(120deg,
+        transparent 0%,
+        rgba(255,255,255,0.03) 30%,
+        transparent 60%);
+      animation: shimmer 7s linear infinite;
+      pointer-events: none;
+    }
+
+    .logo {
+      text-align: center;
+      padding: 42px 20px;
+      border-bottom: 1px solid var(--border);
+      font-size: 72px;
+      font-weight: 600;
+      letter-spacing: 12px;
+      color: var(--gold-soft);
+      font-family: 'Cormorant Garamond', serif;
+      animation: fadeIn 2s ease;
+    }
+
+    .top {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 850px;
+    }
+
+    .left {
+      padding: 90px 80px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .tag {
+      display: inline-flex;
+      width: fit-content;
+      border: 1px solid rgba(200,165,106,0.4);
+      color: var(--gold-soft);
+      padding: 12px 26px;
+      letter-spacing: 5px;
+      font-size: 11px;
+      text-transform: uppercase;
+      margin-bottom: 45px;
+      backdrop-filter: blur(8px);
+      animation: slideUp 1.2s ease;
+    }
+
+    .invite {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 30px;
+      font-size: 28px;
+      animation: slideUp 1.5s ease;
+    }
+
+    .name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 90px;
+      line-height: 0.95;
+      font-weight: 600;
+      margin-bottom: 45px;
+      color: #fff;
+      animation: reveal 1.8s ease;
+    }
+
+    .role {
+      text-transform: uppercase;
+      letter-spacing: 6px;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 65px;
+      line-height: 2.2;
+      font-size: 13px;
+      animation: fadeIn 2.2s ease;
+    }
+
+    .date {
+      display: flex;
+      align-items: flex-end;
+      gap: 26px;
+      animation: slideUp 2s ease;
+    }
+
+    .date-number {
+      font-size: 150px;
+      font-weight: 600;
+      line-height: 0.85;
+      color: var(--gold-soft);
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    .date-text {
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      color: rgba(255,255,255,0.65);
+      line-height: 2;
+      font-size: 13px;
+      padding-bottom: 18px;
+    }
+
+    .right {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .right::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to left,
+        rgba(0,0,0,0.1),
+        rgba(0,0,0,0.5));
+    }
+
+    .right img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      min-height: 850px;
+      transform: scale(1.05);
+      animation: slowZoom 18s ease-in-out infinite alternate;
+    }
+
+    .middle {
+      padding: 80px 90px;
+      border-top: 1px solid var(--border);
+      font-size: 30px;
+      line-height: 1.9;
+      color: rgba(255,255,255,0.82);
+      font-family: 'Cormorant Garamond', serif;
+      text-align: center;
+      background:
+        linear-gradient(to bottom,
+        rgba(255,255,255,0.02),
+        transparent);
+    }
+
+    .middle b {
+      color: var(--gold-soft);
+      font-weight: 600;
+    }
+
+    .venue-section {
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      border-top: 1px solid var(--border);
+      background: rgba(255,255,255,0.02);
+    }
+
+    .venue-left,
+    .venue-right {
+      padding: 70px;
+    }
+
+    .venue-left {
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .venue-day {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 64px;
+      color: var(--gold-soft);
+      margin-bottom: 20px;
+    }
+
+    .venue-time {
+      font-size: 22px;
+      color: rgba(255,255,255,0.75);
+      letter-spacing: 1px;
+    }
+
+    .venue-title {
+      text-transform: uppercase;
+      letter-spacing: 5px;
+      color: rgba(255,255,255,0.45);
+      font-size: 12px;
+      margin-bottom: 28px;
+    }
+
+    .venue-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 58px;
+      font-weight: 600;
+      margin-bottom: 25px;
+      color: #fff;
+    }
+
+    .address {
+      font-size: 20px;
+      line-height: 2;
+      color: rgba(255,255,255,0.72);
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 40px;
+      background: transparent;
+      border: 1px solid rgba(200,165,106,0.45);
+      color: var(--gold-soft);
+      padding: 18px 38px;
+      text-decoration: none;
+      border-radius: 100px;
+      font-size: 14px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      transition: 0.4s ease;
+      width: fit-content;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .button::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--gold-soft);
+      transform: translateX(-100%);
+      transition: 0.5s ease;
+      z-index: -1;
+    }
+
+    .button:hover {
+      color: #111;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(200,165,106,0.25);
+    }
+
+    .button:hover::before {
+      transform: translateX(0%);
+    }
+
+    .footer {
+      border-top: 1px solid var(--border);
+      padding: 35px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      color: rgba(255,255,255,0.45);
+      font-size: 11px;
+      background: rgba(255,255,255,0.02);
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes reveal {
+      from {
+        opacity: 0;
+        transform: translateY(60px);
+        letter-spacing: 8px;
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+        letter-spacing: 0px;
+      }
+    }
+
+    @keyframes shimmer {
+      from {
+        transform: translateX(-100%);
+      }
+      to {
+        transform: translateX(100%);
+      }
+    }
+
+    @keyframes slowZoom {
+      from {
+        transform: scale(1.05);
+      }
+      to {
+        transform: scale(1.18);
+      }
+    }
+
+    @media(max-width: 980px) {
+
+      .top,
+      .venue-section {
+        grid-template-columns: 1fr;
+      }
+
+      .left,
+      .middle,
+      .venue-left,
+      .venue-right {
+        padding: 50px 35px;
+      }
+
+      .venue-left {
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .name {
+        font-size: 58px;
+      }
+
+      .date-number {
+        font-size: 100px;
+      }
+
+      .logo {
+        font-size: 48px;
+        letter-spacing: 8px;
+      }
+
+      .venue-name {
+        font-size: 42px;
+      }
+
+      .middle {
+        font-size: 24px;
+      }
+
+      .footer {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+      }
+
+      .right img {
+        min-height: 500px;
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <div class="logo">OKNA</div>
+
+    <div class="top">
+
+      <div class="left">
+
+        <div class="tag">Exclusive Lunch Invitation · 2026</div>
+
+        <div class="invite">You are cordially invited</div>
+
+        <div class="name">
+          Ar. Deeksha <br>
+          & Ar. <br>
+          Harsimran
         </div>
 
-        {/* Top Invitation Layout */}
-        <div className="grid md:grid-cols-2">
-          {/* Left Side */}
-          <div className="p-10">
-            <div className="inline-block border border-black px-5 py-2 text-xs tracking-[5px] uppercase mb-8">
-              Lunch Invitation · 2026
-            </div>
+        <div class="role">
+          Architects <br>
+          — The Arch House
+        </div>
 
-            <p className="italic text-gray-600 mb-8 text-lg">
-              You are warmly invited
-            </p>
+        <div class="date">
+          <div class="date-number">12</div>
 
-            <h2 className="text-7xl font-serif font-bold leading-tight mb-10">
-              Ar. Deeksha <br /> & Ar. <br /> Harsimran
-            </h2>
-
-            <div className="uppercase tracking-[5px] text-sm text-gray-500 mb-12">
-              Architects <br /> — The Arch House
-            </div>
-
-            <div className="flex items-end gap-5">
-              <div className="text-9xl font-bold leading-none">12</div>
-
-              <div className="uppercase tracking-[4px] text-gray-500 text-sm pb-3">
-                <div>May · 2026</div>
-                <div>Tuesday · Lunch</div>
-              </div>
-            </div>
-          </div>
-
-          {/* Right Side Image */}
-          <div className="h-full min-h-[600px]">
-            <img
-              src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1600&auto=format&fit=crop"
-              alt="Building"
-              className="w-full h-full object-cover"
-            />
+          <div class="date-text">
+            May · 2026 <br>
+            Tuesday · Lunch Gathering
           </div>
         </div>
 
-        {/* Middle Text */}
-        <div className="px-10 py-10 border-t border-gray-300 text-xl leading-relaxed text-gray-700">
-          Please join us for an intimate <span className="italic font-semibold">lunch at OKNA</span>
-          — an opportunity to connect, experience our world of precision-engineered
-          windows & doors, and share ideas in good company.
-        </div>
-
-        {/* Venue */}
-        <div className="grid md:grid-cols-2 border-t border-gray-300">
-          <div className="p-10 border-r border-gray-300">
-            <div className="text-4xl text-gray-500 mb-4">Tuesday</div>
-            <div className="text-xl text-gray-700">12:30 PM onwards</div>
-          </div>
-
-          <div className="p-10">
-            <div className="uppercase tracking-[5px] text-sm text-gray-500 mb-4">
-              Venue
-            </div>
-
-            <h3 className="text-4xl font-bold mb-5">
-              OKNA System Windows
-            </h3>
-
-            <p className="text-lg text-gray-700 leading-9">
-              2nd Floor, Plot No. 1620 C <br />
-              Sector 82, JLPL Industrial Area <br />
-              SAS Nagar, Punjab 140306
-            </p>
-
-            <button className="mt-8 bg-black text-white px-8 py-4 rounded-full text-lg hover:opacity-90 transition-all">
-              View Location
-            </button>
-          </div>
-        </div>
-
-        {/* Footer */}
-        <div className="border-t border-gray-300 px-10 py-6 flex flex-col md:flex-row items-center justify-between gap-4 uppercase tracking-[4px] text-sm text-gray-500">
-          <div>System Doors & Windows</div>
-          <div className="text-2xl font-bold text-[#0b1b35] tracking-normal">
-            OKNA
-          </div>
-          <div>oknadesigns.com</div>
-        </div>
       </div>
+
+      <div class="right">
+        <img src="https://images.unsplash.com/photo-1511818966892-d7d671e672a2?q=80&w=1800&auto=format&fit=crop" alt="Luxury Architecture">
+      </div>
+
     </div>
-  );
-}
+
+    <div class="middle">
+      Please join us for an intimate <b><i>lunch experience at OKNA</i></b> — a curated afternoon of design dialogue, refined hospitality, and a closer look into our world of precision-engineered luxury windows & doors.
+    </div>
+
+    <div class="venue-section">
+
+      <div class="venue-left">
+        <div class="venue-day">Tuesday</div>
+        <div class="venue-time">12:30 PM onwards</div>
+      </div>
+
+      <div class="venue-right">
+
+        <div class="venue-title">Venue</div>
+
+        <div class="venue-name">OKNA System Windows</div>
+
+        <div class="address">
+          2nd Floor, Plot No. 1620 C <br>
+          Sector 82, JLPL Industrial Area <br>
+          SAS Nagar, Punjab 140306
+        </div>
+
+        <a class="button" href="https://maps.google.com" target="_blank">
+          View Location
+        </a>
+
+      </div>
+
+    </div>
+
+    <div class="footer">
+      <div>Luxury System Doors & Windows</div>
+      <div>OKNA</div>
+      <div>oknadesigns.com</div>
+    </div>
+
+  </div>
+
+</body>
+</html>
