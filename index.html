@@ -1,512 +1,208 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>OKNA Luxury Invitation</title>
+  <title>OKNA | An Exclusive Invitation</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;0,600;1,400&family=Inter:wght@200;300;400;600&display=swap" rel="stylesheet">
 
   <style>
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
     :root {
-      --bg: #0a0a0a;
-      --gold: #c8a56a;
-      --gold-soft: #e3c48f;
-      --text: #f5f5f5;
-      --muted: #9a9a9a;
-      --card: rgba(255,255,255,0.05);
+      --black: #000000;
+      --white: #ffffff;
       --border: rgba(255,255,255,0.12);
+      --transition: all 1.2s cubic-bezier(0.7, 0, 0.3, 1);
     }
 
-    body {
-      background:
-        radial-gradient(circle at top left, rgba(200,165,106,0.15), transparent 35%),
-        radial-gradient(circle at bottom right, rgba(255,255,255,0.05), transparent 30%),
-        #050505;
-      color: var(--text);
-      font-family: 'Inter', sans-serif;
-      overflow-x: hidden;
-      padding: 40px 20px;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background-color: var(--black); font-family: 'Inter', sans-serif; color: var(--white); overflow-x: hidden; }
 
-    .container {
-      max-width: 1350px;
-      margin: auto;
-      background: rgba(10,10,10,0.85);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(255,255,255,0.08);
-      box-shadow:
-        0 0 0 1px rgba(255,255,255,0.03),
-        0 40px 120px rgba(0,0,0,0.8);
-      overflow: hidden;
-      position: relative;
-      animation: fadeUp 1.4s ease forwards;
-    }
+    .serif { font-family: 'Cormorant Garamond', serif; }
+    .sans { font-family: 'Inter', sans-serif; text-transform: uppercase; letter-spacing: 5px; font-size: 10px; color: #666; }
 
-    .container::before {
-      content: '';
-      position: absolute;
+    /* --- ENVELOPE --- */
+    #envelopeWrapper {
+      position: fixed;
       inset: 0;
-      background:
-        linear-gradient(120deg,
-        transparent 0%,
-        rgba(255,255,255,0.03) 30%,
-        transparent 60%);
-      animation: shimmer 7s linear infinite;
-      pointer-events: none;
-    }
-
-    .logo {
-      text-align: center;
-      padding: 42px 20px;
-      border-bottom: 1px solid var(--border);
-      font-size: 72px;
-      font-weight: 600;
-      letter-spacing: 12px;
-      color: var(--gold-soft);
-      font-family: 'Cormorant Garamond', serif;
-      animation: fadeIn 2s ease;
-    }
-
-    .top {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      min-height: 850px;
-    }
-
-    .left {
-      padding: 90px 80px;
       display: flex;
-      flex-direction: column;
       justify-content: center;
-      position: relative;
-      z-index: 2;
+      align-items: center;
+      z-index: 2000;
+      background: var(--black);
+      transition: var(--transition);
+      padding: 20px;
     }
-
-    .tag {
-      display: inline-flex;
-      width: fit-content;
-      border: 1px solid rgba(200,165,106,0.4);
-      color: var(--gold-soft);
-      padding: 12px 26px;
-      letter-spacing: 5px;
-      font-size: 11px;
-      text-transform: uppercase;
-      margin-bottom: 45px;
-      backdrop-filter: blur(8px);
-      animation: slideUp 1.2s ease;
-    }
-
-    .invite {
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      color: rgba(255,255,255,0.7);
-      margin-bottom: 30px;
-      font-size: 28px;
-      animation: slideUp 1.5s ease;
-    }
-
-    .name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 90px;
-      line-height: 0.95;
-      font-weight: 600;
-      margin-bottom: 45px;
-      color: #fff;
-      animation: reveal 1.8s ease;
-    }
-
-    .role {
-      text-transform: uppercase;
-      letter-spacing: 6px;
-      color: rgba(255,255,255,0.55);
-      margin-bottom: 65px;
-      line-height: 2.2;
-      font-size: 13px;
-      animation: fadeIn 2.2s ease;
-    }
-
-    .date {
-      display: flex;
-      align-items: flex-end;
-      gap: 26px;
-      animation: slideUp 2s ease;
-    }
-
-    .date-number {
-      font-size: 150px;
-      font-weight: 600;
-      line-height: 0.85;
-      color: var(--gold-soft);
-      font-family: 'Cormorant Garamond', serif;
-    }
-
-    .date-text {
-      text-transform: uppercase;
-      letter-spacing: 4px;
-      color: rgba(255,255,255,0.65);
-      line-height: 2;
-      font-size: 13px;
-      padding-bottom: 18px;
-    }
-
-    .right {
-      position: relative;
-      overflow: hidden;
-    }
-
-    .right::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(to left,
-        rgba(0,0,0,0.1),
-        rgba(0,0,0,0.5));
-    }
-
-    .right img {
+    .envelope {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
-      min-height: 850px;
-      transform: scale(1.05);
-      animation: slowZoom 18s ease-in-out infinite alternate;
-    }
-
-    .middle {
-      padding: 80px 90px;
-      border-top: 1px solid var(--border);
-      font-size: 30px;
-      line-height: 1.9;
-      color: rgba(255,255,255,0.82);
-      font-family: 'Cormorant Garamond', serif;
-      text-align: center;
-      background:
-        linear-gradient(to bottom,
-        rgba(255,255,255,0.02),
-        transparent);
-    }
-
-    .middle b {
-      color: var(--gold-soft);
-      font-weight: 600;
-    }
-
-    .venue-section {
-      display: grid;
-      grid-template-columns: 0.8fr 1.2fr;
-      border-top: 1px solid var(--border);
-      background: rgba(255,255,255,0.02);
-    }
-
-    .venue-left,
-    .venue-right {
-      padding: 70px;
-    }
-
-    .venue-left {
-      border-right: 1px solid var(--border);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .venue-day {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 64px;
-      color: var(--gold-soft);
-      margin-bottom: 20px;
-    }
-
-    .venue-time {
-      font-size: 22px;
-      color: rgba(255,255,255,0.75);
-      letter-spacing: 1px;
-    }
-
-    .venue-title {
-      text-transform: uppercase;
-      letter-spacing: 5px;
-      color: rgba(255,255,255,0.45);
-      font-size: 12px;
-      margin-bottom: 28px;
-    }
-
-    .venue-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 58px;
-      font-weight: 600;
-      margin-bottom: 25px;
-      color: #fff;
-    }
-
-    .address {
-      font-size: 20px;
-      line-height: 2;
-      color: rgba(255,255,255,0.72);
-    }
-
-    .button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      margin-top: 40px;
-      background: transparent;
-      border: 1px solid rgba(200,165,106,0.45);
-      color: var(--gold-soft);
-      padding: 18px 38px;
-      text-decoration: none;
-      border-radius: 100px;
-      font-size: 14px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      transition: 0.4s ease;
-      width: fit-content;
-      overflow: hidden;
+      max-width: 480px;
+      height: 320px;
+      background: #fff;
       position: relative;
-    }
-
-    .button::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: var(--gold-soft);
-      transform: translateX(-100%);
-      transition: 0.5s ease;
-      z-index: -1;
-    }
-
-    .button:hover {
-      color: #111;
-      transform: translateY(-3px);
-      box-shadow: 0 10px 30px rgba(200,165,106,0.25);
-    }
-
-    .button:hover::before {
-      transform: translateX(0%);
-    }
-
-    .footer {
-      border-top: 1px solid var(--border);
-      padding: 35px 60px;
+      cursor: pointer;
+      box-shadow: 0 60px 120px rgba(0,0,0,0.9);
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
-      text-transform: uppercase;
-      letter-spacing: 4px;
-      color: rgba(255,255,255,0.45);
-      font-size: 11px;
-      background: rgba(255,255,255,0.02);
+    }
+    .envelope-flap {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #fdfdfd;
+      clip-path: polygon(0 0, 50% 55%, 100% 0); transform-origin: top; transition: var(--transition); z-index: 2;
+    }
+    .seal {
+      position: absolute; z-index: 3; width: 70px; height: 70px; background: var(--black); border-radius: 50%;
+      display: flex; justify-content: center; align-items: center; color: #fff; font-size: 12px; letter-spacing: 3px;
+      font-weight: 600;
     }
 
-    @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(40px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    /* --- LAYOUT --- */
+    .invite-page { display: flex; opacity: 0; transition: var(--transition); visibility: hidden; flex-direction: row; }
+    .show-page { opacity: 1; visibility: visible; }
+
+    /* LEFT SIDE: FIXED INVITE */
+    .left-fixed {
+      width: 40%; height: 100vh; position: fixed; left: 0; top: 0;
+      padding: 60px; display: flex; flex-direction: column; justify-content: space-between;
+      background: var(--black); border-right: 1px solid var(--border); z-index: 100;
     }
+    .okna-logo { font-size: 32px; letter-spacing: 15px; text-transform: uppercase; font-weight: 600; text-align: center; }
+    .hero-text { margin: 40px 0; }
+    .invite-text { font-size: 22px; font-style: italic; color: #999; margin-bottom: 25px; line-height: 1.4; }
+    .guest-names { font-size: clamp(32px, 4vw, 65px); line-height: 1.1; font-weight: 500; margin-bottom: 20px; letter-spacing: -1px;}
+    .bottom-date { font-size: 10px; letter-spacing: 3px; color: #555; text-transform: uppercase; }
 
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-      }
-      to {
-        opacity: 1;
-      }
-    }
+    /* RIGHT SIDE: SCROLLING CONTENT */
+    .right-scroll { width: 60%; margin-left: 40%; background: var(--black); }
+    .panel { min-height: 100vh; width: 100%; position: relative; padding: 100px 10%; display: flex; flex-direction: column; justify-content: center; border-bottom: 1px solid var(--border); }
+    
+    .panel-bg { position: absolute; inset: 0; background-size: cover; background-position: center; z-index: 0; opacity: 0.35; filter: grayscale(100%); transition: 2s ease; }
+    .panel:hover .panel-bg { opacity: 0.55; filter: grayscale(0%); transform: scale(1.05); }
 
-    @keyframes slideUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
+    .content-overlay { position: relative; z-index: 1; }
+    .panel-title { font-size: 48px; margin-bottom: 25px; line-height: 1.1; font-weight: 300; }
+    .panel-p { font-family: 'Inter', sans-serif; font-size: 15px; line-height: 1.8; color: #bbb; margin-bottom: 30px; font-weight: 300; }
 
-    @keyframes reveal {
-      from {
-        opacity: 0;
-        transform: translateY(60px);
-        letter-spacing: 8px;
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-        letter-spacing: 0px;
-      }
-    }
+    .specs-container { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 40px; border-top: 1px solid var(--border); padding-top: 40px;}
+    .spec-box .label { font-size: 9px; letter-spacing: 2px; color: #555; margin-bottom: 8px; display: block;}
+    .spec-box .value { font-size: 18px; color: #fff; font-style: italic; }
 
-    @keyframes shimmer {
-      from {
-        transform: translateX(-100%);
-      }
-      to {
-        transform: translateX(100%);
-      }
-    }
+    /* CTA PANEL */
+    .cta-panel { background: #fff; color: #000; padding: 100px 10%; }
+    .address-text { font-family: 'Inter', sans-serif; font-size: 15px; line-height: 1.7; margin-bottom: 40px; color: #333; }
+    .map-btn { display: inline-block; padding: 22px 50px; background: #000; color: #fff; text-decoration: none; text-transform: uppercase; letter-spacing: 4px; font-size: 11px; font-weight: 600; text-align: center; width: fit-content; }
 
-    @keyframes slowZoom {
-      from {
-        transform: scale(1.05);
-      }
-      to {
-        transform: scale(1.18);
-      }
-    }
-
-    @media(max-width: 980px) {
-
-      .top,
-      .venue-section {
-        grid-template-columns: 1fr;
-      }
-
-      .left,
-      .middle,
-      .venue-left,
-      .venue-right {
-        padding: 50px 35px;
-      }
-
-      .venue-left {
+    /* --- MOBILE RESPONSIVENESS --- */
+    @media (max-width: 1024px) {
+      .invite-page { flex-direction: column; }
+      
+      .left-fixed {
+        width: 100%;
+        height: auto;
+        position: relative;
+        padding: 60px 30px;
         border-right: none;
         border-bottom: 1px solid var(--border);
       }
-
-      .name {
-        font-size: 58px;
+      
+      .right-scroll {
+        width: 100%;
+        margin-left: 0;
       }
 
-      .date-number {
-        font-size: 100px;
-      }
-
-      .logo {
-        font-size: 48px;
-        letter-spacing: 8px;
-      }
-
-      .venue-name {
-        font-size: 42px;
-      }
-
-      .middle {
-        font-size: 24px;
-      }
-
-      .footer {
-        flex-direction: column;
-        gap: 12px;
-        text-align: center;
-      }
-
-      .right img {
-        min-height: 500px;
-      }
+      .okna-logo { font-size: 26px; letter-spacing: 12px; }
+      .invite-text { font-size: 18px; }
+      .guest-names { font-size: 42px; }
+      .panel { min-height: auto; padding: 80px 30px; }
+      .panel-title { font-size: 36px; }
+      .specs-container { grid-template-columns: 1fr; gap: 20px; }
+      .cta-panel { padding: 80px 30px; }
+      .map-btn { width: 100%; }
     }
-
   </style>
 </head>
 <body>
 
-  <div class="container">
-
-    <div class="logo">OKNA</div>
-
-    <div class="top">
-
-      <div class="left">
-
-        <div class="tag">Exclusive Lunch Invitation · 2026</div>
-
-        <div class="invite">You are cordially invited</div>
-
-        <div class="name">
-          Ar. Deeksha <br>
-          & Ar. <br>
-          Harsimran
-        </div>
-
-        <div class="role">
-          Architects <br>
-          — The Arch House
-        </div>
-
-        <div class="date">
-          <div class="date-number">12</div>
-
-          <div class="date-text">
-            May · 2026 <br>
-            Tuesday · Lunch Gathering
-          </div>
-        </div>
-
-      </div>
-
-      <div class="right">
-        <img src="https://images.unsplash.com/photo-1511818966892-d7d671e672a2?q=80&w=1800&auto=format&fit=crop" alt="Luxury Architecture">
-      </div>
-
+  <div id="envelopeWrapper">
+    <div class="envelope" onclick="openInvite()">
+      <div class="envelope-flap" id="flap"></div>
+      <div class="seal serif">OKNA</div>
+      <div class="sans" style="margin-top: 110px; color: #aaa; text-align: center;">Personal Invitation</div>
     </div>
-
-    <div class="middle">
-      Please join us for an intimate <b><i>lunch experience at OKNA</i></b> — a curated afternoon of design dialogue, refined hospitality, and a closer look into our world of precision-engineered luxury windows & doors.
-    </div>
-
-    <div class="venue-section">
-
-      <div class="venue-left">
-        <div class="venue-day">Tuesday</div>
-        <div class="venue-time">12:30 PM onwards</div>
-      </div>
-
-      <div class="venue-right">
-
-        <div class="venue-title">Venue</div>
-
-        <div class="venue-name">OKNA System Windows</div>
-
-        <div class="address">
-          2nd Floor, Plot No. 1620 C <br>
-          Sector 82, JLPL Industrial Area <br>
-          SAS Nagar, Punjab 140306
-        </div>
-
-        <a class="button" href="https://maps.google.com" target="_blank">
-          View Location
-        </a>
-
-      </div>
-
-    </div>
-
-    <div class="footer">
-      <div>Luxury System Doors & Windows</div>
-      <div>OKNA</div>
-      <div>oknadesigns.com</div>
-    </div>
-
   </div>
 
+  <div class="invite-page" id="invitePage">
+    <div class="left-fixed">
+      <div class="okna-logo serif">OKNA</div>
+      <div class="hero-text">
+        <p class="invite-text serif">OKNA cordially invites you to a curated walkthrough of our Experience Center—where your dream home finds its vision.</p>
+        <h1 class="guest-names serif">A Private <br>Experience</h1>
+        <p class="sans" style="color:#444">Luxury System Windows & Doors</p>
+      </div>
+      <div class="bottom-date sans">By Appointment • Mohali</div>
+    </div>
+
+    <div class="right-scroll">
+      <section class="panel">
+        <div class="panel-bg" style="background-image: url('https://images.unsplash.com/photo-1600607687940-4e524cb35a07?q=80&w=1400');"></div>
+        <div class="content-overlay">
+          <span class="sans" style="color:#fff; opacity:0.5; margin-bottom:15px; display:block;">01 / Lifestyle</span>
+          <h2 class="panel-title serif">Frames for <br>a Lifetime.</h2>
+          <p class="panel-p">Your home is a sanctuary. At OKNA, we use Belgium engineering to ensure that every view from your living room is a masterpiece, framed by the slimmest profiles in the world.</p>
+        </div>
+      </section>
+
+      <section class="panel" style="background-color: #080808;">
+        <div class="content-overlay">
+          <span class="sans" style="margin-bottom:15px; display:block;">02 / Why Visit</span>
+          <h2 class="panel-title serif">Tactile Luxury.</h2>
+          <p class="panel-p">We believe luxury must be felt. Visit us to experience the "Silent Glide" of our sliding systems and the solid reassurance of our multi-point security hardware.</p>
+          <div class="specs-container">
+            <div class="spec-box"><span class="label">Security</span><span class="value">Advanced Belgium Locking</span></div>
+            <div class="spec-box"><span class="label">Aesthetics</span><span class="value">Ultra-Slim 20mm Sightlines</span></div>
+            <div class="spec-box"><span class="label">Comfort</span><span class="value">Heat & Noise Insulation</span></div>
+            <div class="spec-box"><span class="label">Durability</span><span class="value">Hurricane-Tested Frames</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-bg" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1400');"></div>
+        <div class="content-overlay">
+          <span class="sans" style="color:#fff; opacity:0.5; margin-bottom:15px; display:block;">03 / Quality</span>
+          <h2 class="panel-title serif">Peace of Mind.</h2>
+          <p class="panel-p">Our systems don't just look beautiful—they are built to protect. Experience how we combine the elegance of large-span glass with the strength of high-grade aluminum.</p>
+        </div>
+      </section>
+
+      <section class="cta-panel">
+        <h2 class="panel-title serif" style="color: #000; margin-bottom: 20px;">The Experience Center</h2>
+        <p class="address-text">
+          <b>OKNA Luxury Systems</b><br>
+          2nd Floor, Plot no - 1620 C, Sector 82, <br>
+          JLPL Industrial Area, Sahibzada Ajit Singh Nagar,<br>
+          Mohali, Punjab 140306
+        </p>
+        <a href="https://www.google.com/maps/search/?api=1&query=OKNA+System+Windows+Sector+82+Mohali" target="_blank" class="map-btn">Get Directions</a>
+      </section>
+
+      <footer style="padding: 40px 10%; background: #000; text-align: center;">
+        <div class="sans" style="color:#333; font-size: 8px;">Bespoke Luxury Systems • oknadesigns.com</div>
+      </footer>
+    </div>
+  </div>
+
+  <script>
+    function openInvite() {
+      document.getElementById('flap').style.transform = "rotateX(180deg)";
+      setTimeout(() => {
+        document.getElementById('envelopeWrapper').style.opacity = "0";
+        document.getElementById('envelopeWrapper').style.visibility = "hidden";
+        document.getElementById('invitePage').classList.add('show-page');
+        document.body.style.overflowY = "auto";
+      }, 800);
+    }
+  </script>
 </body>
 </html>
-
