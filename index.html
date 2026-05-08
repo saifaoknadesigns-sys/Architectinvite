@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>OKNA | The Digital Experience</title>
+  <title>OKNA | The Ultimate Brand Experience</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,231 +13,215 @@
     :root {
       --black: #000000;
       --white: #ffffff;
-      --accent: rgba(255,255,255,0.2);
-      --transition: all 1.2s cubic-bezier(0.85, 0, 0.15, 1);
+      --accent: rgba(255,255,255,0.15);
+      --transition: all 1.4s cubic-bezier(0.8, 0, 0.2, 1);
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { background-color: var(--black); font-family: 'Inter', sans-serif; color: var(--white); overflow: hidden; }
 
-    /* --- INITIAL GATEWAY (TEXTURED WHITE ENVELOPE) --- */
-    #gatekeeper {
+    /* --- GATEWAY: THE ENVELOPE --- */
+    #gateway {
       position: fixed; inset: 0; z-index: 9999; background: #000;
       display: flex; justify-content: center; align-items: center; transition: var(--transition);
     }
-    .env-wrapper {
-      width: 500px; height: 340px; background: #fff; position: relative;
-      cursor: pointer; box-shadow: 0 100px 150px rgba(0,0,0,1);
-      display: flex; flex-direction: column; justify-content: center; align-items: center;
-      transition: 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+    .envelope {
+      width: 450px; height: 300px; background: #fff; position: relative;
+      cursor: pointer; box-shadow: 0 80px 160px rgba(0,0,0,1);
     }
-    .env-flap {
-      position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #fdfdfd;
+    .flap {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #f9f9f9;
       clip-path: polygon(0 0, 50% 55%, 100% 0); transform-origin: top; z-index: 2; transition: 1s ease;
-      border-top: 1px solid #eee;
     }
-    .env-seal {
-      position: absolute; z-index: 3; width: 80px; height: 80px; background: #000; border-radius: 50%;
-      display: flex; justify-content: center; align-items: center; color: #fff; font-size: 12px;
-      letter-spacing: 4px; font-family: 'Cormorant Garamond', serif;
+    .seal {
+      position: absolute; top: 45%; left: 50%; transform: translate(-50%, -50%);
+      width: 60px; height: 60px; background: #000; border-radius: 50%; z-index: 3;
+      display: flex; justify-content: center; align-items: center; color: #fff; font-size: 10px; letter-spacing: 2px;
     }
-    .env-text { font-family: 'Inter', sans-serif; font-size: 9px; letter-spacing: 8px; color: #bbb; text-transform: uppercase; margin-top: 120px; z-index: 1;}
 
-    /* --- THE SHOWCASE (SCROLLING EXPERIENCE) --- */
-    .master-container {
+    /* --- MAIN SHOWCASE --- */
+    .showcase-container {
       height: 100vh; overflow-y: auto; scroll-snap-type: y mandatory;
       opacity: 0; visibility: hidden; transition: 2s ease;
     }
     .section {
       height: 100vh; width: 100%; scroll-snap-align: start;
       position: relative; overflow: hidden; display: flex; align-items: center;
+      border-bottom: 1px solid var(--accent);
     }
 
-    /* FULL SCREEN VISUALS (IMAGES/VIDEOS) */
-    .media-container {
+    /* VISUAL ELEMENTS */
+    .bg-media {
       position: absolute; inset: 0; z-index: 0; overflow: hidden;
     }
-    .media-container img, .media-container video {
-      width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%) brightness(0.5);
-      transition: 10s linear;
+    .bg-media img, .bg-media video {
+      width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%) brightness(0.4);
+      transition: 8s ease;
     }
-    .section.active .media-container img { transform: scale(1.1); filter: grayscale(0%) brightness(0.6); }
+    .section.active .bg-media img { transform: scale(1.1); filter: grayscale(0%) brightness(0.5); }
 
     /* CONTENT BLOCKS */
     .content {
-      position: relative; z-index: 10; padding: 0 8%; width: 100%;
-      opacity: 0; transform: translateX(-100px); transition: 1.5s ease 0.3s;
+      position: relative; z-index: 10; padding: 0 10%; width: 100%;
+      opacity: 0; transform: translateY(40px); transition: 1.2s ease 0.4s;
     }
-    .section.active .content { opacity: 1; transform: translateX(0); }
+    .section.active .content { opacity: 1; transform: translateY(0); }
 
-    .tag { font-size: 10px; letter-spacing: 8px; text-transform: uppercase; color: #888; margin-bottom: 25px; display: block; }
-    .heading { font-family: 'Cormorant Garamond', serif; font-size: clamp(50px, 9vw, 120px); line-height: 0.9; font-weight: 500; margin-bottom: 35px; }
-    .body-text { font-size: 16px; line-height: 1.8; color: #ccc; max-width: 600px; font-weight: 200; }
+    .tag { font-size: 10px; letter-spacing: 7px; text-transform: uppercase; color: #888; margin-bottom: 20px; display: block; }
+    .heading { font-family: 'Cormorant Garamond', serif; font-size: clamp(40px, 8vw, 110px); line-height: 0.9; font-weight: 400; margin-bottom: 30px; }
+    .text { font-size: 15px; line-height: 1.8; color: #ccc; max-width: 600px; font-weight: 200; }
 
-    /* TECHNICAL PERFORMANCE METERS */
-    .performance-grid {
-      display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; margin-top: 60px; max-width: 700px;
-    }
-    .meter-item { position: relative; padding-bottom: 10px; }
-    .meter-label { font-size: 11px; text-transform: uppercase; letter-spacing: 3px; color: #666; margin-bottom: 15px; display: block; }
-    .meter-bar { height: 1px; width: 0%; background: #fff; transition: 2s ease 1s; }
-    .section.active .meter-bar { width: 100%; }
-    .meter-value { font-family: 'Cormorant Garamond', serif; font-size: 28px; margin-top: 10px; display: block; font-style: italic;}
+    /* PRODUCT CARDS GRID */
+    .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 40px; }
+    .feature-card { background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); padding: 30px; border: 1px solid var(--accent); }
+    .feature-card h4 { font-family: 'Cormorant Garamond', serif; font-size: 24px; margin-bottom: 10px; }
+    .feature-card p { font-size: 12px; color: #888; line-height: 1.6; }
 
-    /* PRODUCT FOCUS CARDS */
-    .product-grid {
-        display: flex; gap: 20px; margin-top: 40px;
-    }
-    .p-card {
-        border: 1px solid var(--accent); padding: 30px; flex: 1;
-        background: rgba(255,255,255,0.02); backdrop-filter: blur(10px);
-    }
-    .p-card h4 { font-family: 'Cormorant Garamond', serif; font-size: 24px; margin-bottom: 10px; }
-    .p-card p { font-size: 12px; color: #777; line-height: 1.6; }
+    /* STATS METERS */
+    .stat-row { margin-top: 40px; max-width: 600px; }
+    .stat-bar-container { height: 1px; width: 100%; background: #333; margin: 15px 0; position: relative; }
+    .stat-bar-fill { height: 1px; width: 0%; background: #fff; transition: 2s cubic-bezier(0.1, 1, 0.3, 1) 0.5s; }
+    .section.active .stat-bar-fill { width: 100%; }
+    .stat-label { display: flex; justify-content: space-between; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; }
 
-    /* FINAL CONTACT SCREEN (WHITE REVEAL) */
-    .white-section { background: #fff; color: #000; }
-    .white-section .media-container img { filter: none; opacity: 0.1; }
+    /* FINAL WHITE SECTION */
+    .white-reveal { background: #fff; color: #000; }
+    .white-reveal .bg-media img { filter: brightness(1.2) opacity(0.1); }
     .map-btn {
-        display: inline-block; padding: 25px 80px; background: #000; color: #fff;
-        text-decoration: none; text-transform: uppercase; letter-spacing: 5px; font-size: 11px;
-        font-weight: 600; margin-top: 50px; transition: 0.5s ease;
+      display: inline-block; padding: 25px 70px; background: #000; color: #fff;
+      text-decoration: none; text-transform: uppercase; letter-spacing: 5px; font-size: 11px;
+      margin-top: 40px; transition: 0.4s;
     }
-    .map-btn:hover { background: #333; padding-left: 100px; }
+    .map-btn:hover { background: #333; padding-left: 90px; }
 
-    /* MOBILE TWEAKS */
     @media (max-width: 1024px) {
-        .master-container { scroll-snap-type: none; overflow-y: auto; }
-        .section { height: auto; min-height: 100vh; padding: 100px 0; }
-        .heading { font-size: 60px; }
-        .product-grid { flex-direction: column; }
-        .performance-grid { grid-template-columns: 1fr; }
-        .env-wrapper { width: 90%; height: 280px; }
+      .showcase-container { scroll-snap-type: none; overflow-y: auto; }
+      .section { height: auto; min-height: 100vh; padding: 80px 0; }
+      .feature-grid { grid-template-columns: 1fr; }
+      .content { padding: 0 30px; }
+      .heading { font-size: 50px; }
     }
   </style>
 </head>
 <body>
 
-  <div id="gatekeeper">
-    <div class="env-wrapper" onclick="startShowcase()">
-      <div class="env-flap" id="envFlap"></div>
-      <div class="env-seal">OKNA</div>
-      <div class="env-text">Open Experience</div>
+  <div id="gateway">
+    <div class="envelope" onclick="revealExperience()">
+      <div class="flap" id="envFlap"></div>
+      <div class="seal">OKNA</div>
+      <div style="margin-top: 120px; text-align: center; font-size: 9px; letter-spacing: 5px; color: #bbb; text-transform: uppercase;">Unlock the Journey</div>
     </div>
   </div>
 
-  <div class="master-container" id="master">
+  <div class="showcase-container" id="showcase">
 
     <section class="section active">
-      <div class="media-container">
-        <img src="https://images.unsplash.com/photo-1600607687940-4e524cb35a07?q=80&w=2500" alt="OKNA Legacy">
-      </div>
+      <div class="bg-media"><img src="https://images.unsplash.com/photo-1600607687940-4e524cb35a07?q=80&w=2000"></div>
       <div class="content">
-        <span class="tag">Belgium Engineering • Since 1999</span>
-        <h1 class="heading">Architecture <br>Unbound.</h1>
-        <p class="body-text">
-            Welcome to OKNA. We don't just manufacture windows; we engineer the light, sound, and atmosphere of your home. A private invitation to witness the pinnacle of Belgium technology.
-        </p>
+        <span class="tag">Belgium Engineering Heritage</span>
+        <h1 class="heading">Atmosphere <br>Engineered.</h1>
+        <p class="text">Welcome to the world of OKNA. We create portals that dissolve boundaries—combining European structural precision with the pursuit of perfect transparency.</p>
       </div>
     </section>
 
     <section class="section">
-      <div class="media-container">
-        <video autoplay muted loop playsinline>
-          <source src="https://assets.mixkit.co/videos/preview/mixkit-interior-of-a-modern-living-room-with-large-windows-44341-large.mp4" type="video/mp4">
-        </video>
+      <div class="bg-media">
+        <video autoplay muted loop playsinline><source src="https://assets.mixkit.co/videos/preview/mixkit-modern-apartment-with-large-windows-at-night-40156-large.mp4" type="video/mp4"></video>
       </div>
       <div class="content">
-        <span class="tag">Product Spotlight: Gladik Plus</span>
-        <h2 class="heading">20mm <br>Perfection.</h2>
-        <p class="body-text">
-            Our Gladik Plus series features the world's slimmest interlocks. Experience uninterrupted visual continuity with spans that dissolve the wall between your sanctuary and the sky.
-        </p>
-        <div class="product-grid">
-            <div class="p-card">
-                <h4>Slim Interlock</h4>
-                <p>A mere 20mm sightline for absolute panoramic views.</p>
-            </div>
-            <div class="p-card">
-                <h4>Silent Glide</h4>
-                <p>Patented roller systems for effortless movement of 500kg panels.</p>
-            </div>
-            <div class="p-card">
-                <h4>Thermal Shield</h4>
-                <p>Advanced Belgium multi-chambered insulation tech.</p>
-            </div>
+        <span class="tag">Minimalist Series</span>
+        <h2 class="heading">Gladik Plus <br>Sliding.</h2>
+        <p class="text">Experience the slimmest interlocks in the global market. A 20mm sightline that provides structural stability for panels up to 4.5 meters in height.</p>
+        <div class="feature-grid">
+          <div class="feature-card"><h4>20mm</h4><p>World-class slim sightlines.</p></div>
+          <div class="feature-card"><h4>500 KG</h4><p>Weight capacity per panel.</p></div>
+          <div class="feature-card"><h4>Silent</h4><p>Patented soft-glide rollers.</p></div>
         </div>
       </div>
     </section>
 
     <section class="section">
-      <div class="media-container">
-        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2500" alt="Testing">
-      </div>
+      <div class="bg-media"><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2000"></div>
       <div class="content">
-        <span class="tag">Technical Mastery: Six Sense Tech</span>
-        <h2 class="heading">Tested for <br>Extremes.</h2>
-        <div class="performance-grid">
-            <div class="meter-item">
-                <span class="meter-label">Acoustic Isolation</span>
-                <div class="meter-bar"></div>
-                <span class="meter-value">52 dB Noise Reduction</span>
-            </div>
-            <div class="meter-item">
-                <span class="meter-label">Service Life</span>
-                <div class="meter-bar"></div>
-                <span class="meter-value">2,00,000 Tested Cycles</span>
-            </div>
-            <div class="meter-item">
-                <span class="meter-label">Wind Resistance</span>
-                <div class="meter-bar"></div>
-                <span class="meter-value">Hurricane-Grade Stability</span>
-            </div>
-            <div class="meter-item">
-                <span class="meter-label">Innovation</span>
-                <div class="meter-bar"></div>
-                <span class="meter-value">IoT & Vertical Motorization</span>
-            </div>
+        <span class="tag">Smart Motion</span>
+        <h2 class="heading">Vertical <br>Evolution.</h2>
+        <p class="text">Our motorized vertical windows redefine spatial freedom. Effortless automation integrated with your smart home for seamless indoor-outdoor transitions.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="bg-media"><img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?q=80&w=2000"></div>
+      <div class="content">
+        <span class="tag">Performance Testing</span>
+        <h2 class="heading">The Six Sense <br>Standard.</h2>
+        <div class="stat-row">
+          <div class="stat-label"><span>Acoustic Isolation</span><span>52 dB</span></div>
+          <div class="stat-bar-container"><div class="stat-bar-fill"></div></div>
+          <div class="stat-label"><span>Service Life</span><span>200,000 Cycles</span></div>
+          <div class="stat-bar-container"><div class="stat-bar-fill"></div></div>
+          <div class="stat-label"><span>Wind Resistance</span><span>Hurricane Grade</span></div>
+          <div class="stat-bar-container"><div class="stat-bar-fill"></div></div>
         </div>
       </div>
     </section>
 
     <section class="section">
-        <div class="media-container">
-          <img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?q=80&w=2500" alt="Vertical Windows">
-        </div>
-        <div class="content">
-          <span class="tag">Future Living</span>
-          <h2 class="heading">Motorized <br>Verticals.</h2>
-          <p class="body-text">
-              Step into the future with OKNA's vertical sliding systems. Floor-to-ceiling glass that moves silently with smart-home integration, creating open-air living at the touch of a button.
-          </p>
-        </div>
-      </section>
-
-    <section class="section white-section">
-      <div class="media-container">
-        <img src="https://images.unsplash.com/photo-1600607687644-c7171b42498f?q=80&w=2500" alt="Experience Center">
+      <div class="bg-media"><img src="https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?q=80&w=2000"></div>
+      <div class="content">
+        <span class="tag">Grand Entrances</span>
+        <h2 class="heading">Pivot <br>Mastery.</h2>
+        <p class="text">Make a statement with OKNA Pivot Doors. Engineered to handle massive weight with a single-finger touch operation, featuring Belgium multi-point locking systems.</p>
       </div>
+    </section>
+
+    <section class="section">
+      <div class="bg-media"><img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=80&w=2000"></div>
+      <div class="content">
+        <span class="tag">Invisible Transitions</span>
+        <h2 class="heading">Zero <br>Threshold.</h2>
+        <p class="text">Eliminate the barrier. Our zero-threshold drainage systems allow the interior floor to meet the patio at the exact same level, with hidden high-flow drainage technology.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="bg-media"><img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=2000"></div>
+      <div class="content">
+        <span class="tag">Sustainable Luxury</span>
+        <h2 class="heading">Climatic <br>Control.</h2>
+        <p class="text">Advanced thermal break technology designed in Belgium. Maintain the perfect interior temperature regardless of the external environment, reducing energy footprints without losing light.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="bg-media"><img src="https://images.unsplash.com/photo-1600607687644-c7171b42498f?q=80&w=2000"></div>
+      <div class="content">
+        <span class="tag">Customization</span>
+        <h2 class="heading">Bespoke <br>Craft.</h2>
+        <p class="text">Every OKNA system is a unique commission. From architectural coatings to specialized glazing, we tailor every detail to your specific structural requirements.</p>
+      </div>
+    </section>
+
+    <section class="section white-reveal">
+      <div class="bg-media"><img src="https://images.unsplash.com/photo-1600585154526-990dcea4db0d?q=80&w=2000"></div>
       <div class="content">
         <span class="tag" style="color:#000">Experience Excellence</span>
         <h2 class="heading" style="color:#000">Visit Us in <br>Mohali.</h2>
-        <p style="color:#444; font-size: 20px; font-family: 'Cormorant Garamond', serif; font-style: italic;">
-            2nd Floor, Plot no - 1620 C, Sector 82, <br>
-            JLPL Industrial Area, Sahibzada Ajit Singh Nagar, <br>
-            Punjab 140306
+        <p style="color:#333; line-height: 1.8; font-size: 18px; font-family: 'Cormorant Garamond', serif; font-style: italic;">
+          2nd Floor, Plot no - 1620 C, Sector 82, <br>
+          JLPL Industrial Area, Sahibzada Ajit Singh Nagar, <br>
+          Punjab 140306
         </p>
-        <a href="http://googleusercontent.com/maps.google.com/6" target="_blank" class="map-btn">Get Directions</a>
+        <a href="http://googleusercontent.com/maps.google.com/7" target="_blank" class="map-btn">Get Directions</a>
       </div>
     </section>
 
   </div>
 
   <script>
-    function startShowcase() {
+    function revealExperience() {
       const flap = document.getElementById('envFlap');
-      const gate = document.getElementById('gatekeeper');
-      const master = document.getElementById('master');
+      const gate = document.getElementById('gateway');
+      const showcase = document.getElementById('showcase');
 
       flap.style.transform = "rotateX(180deg)";
       
@@ -246,14 +230,14 @@
         gate.style.opacity = "0";
         setTimeout(() => {
           gate.style.display = "none";
-          master.style.opacity = "1";
-          master.style.visibility = "visible";
+          showcase.style.opacity = "1";
+          showcase.style.visibility = "visible";
           document.body.style.overflow = "hidden";
         }, 800);
       }, 600);
     }
 
-    // Interactive Scroll Trigger
+    // Scroll Trigger for Active States
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) entry.target.classList.add('active');
